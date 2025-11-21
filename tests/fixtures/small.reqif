@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <THE-HEADER>
+    <REQ-IF-HEADER IDENTIFIER="reqif-test-001">
+      <CREATION-TIME>2025-11-21T00:00:00Z</CREATION-TIME>
+      <REQ-IF-TOOL-ID>ReqSmith</REQ-IF-TOOL-ID>
+      <REQ-IF-VERSION>1.2</REQ-IF-VERSION>
+      <SOURCE-TOOL-ID>ReqSmith Test Generator</SOURCE-TOOL-ID>
+      <TITLE>Small Test ReqIF File</TITLE>
+    </REQ-IF-HEADER>
+  </THE-HEADER>
+  
+  <CORE-CONTENT>
+    <REQ-IF-CONTENT>
+      <!-- Data Types -->
+      <DATATYPES>
+        <DATATYPE-DEFINITION-STRING IDENTIFIER="dt-string-001" LONG-NAME="String Type" MAX-LENGTH="1000"/>
+        <DATATYPE-DEFINITION-INTEGER IDENTIFIER="dt-int-001" LONG-NAME="Integer Type" MIN="0" MAX="100"/>
+        <DATATYPE-DEFINITION-XHTML IDENTIFIER="dt-xhtml-001" LONG-NAME="XHTML Type"/>
+      </DATATYPES>
+      
+      <!-- Spec Types -->
+      <SPEC-TYPES>
+        <SPEC-OBJECT-TYPE IDENTIFIER="sot-requirement" LONG-NAME="Requirement">
+          <SPEC-ATTRIBUTES>
+            <ATTRIBUTE-DEFINITION-STRING IDENTIFIER="ad-title" LONG-NAME="Title">
+              <TYPE><DATATYPE-DEFINITION-STRING-REF>dt-string-001</DATATYPE-DEFINITION-STRING-REF></TYPE>
+            </ATTRIBUTE-DEFINITION-STRING>
+            <ATTRIBUTE-DEFINITION-XHTML IDENTIFIER="ad-description" LONG-NAME="Description">
+              <TYPE><DATATYPE-DEFINITION-XHTML-REF>dt-xhtml-001</DATATYPE-DEFINITION-XHTML-REF></TYPE>
+            </ATTRIBUTE-DEFINITION-XHTML>
+            <ATTRIBUTE-DEFINITION-INTEGER IDENTIFIER="ad-priority" LONG-NAME="Priority">
+              <TYPE><DATATYPE-DEFINITION-INTEGER-REF>dt-int-001</DATATYPE-DEFINITION-INTEGER-REF></TYPE>
+            </ATTRIBUTE-DEFINITION-INTEGER>
+          </SPEC-ATTRIBUTES>
+        </SPEC-OBJECT-TYPE>
+        
+        <SPECIFICATION-TYPE IDENTIFIER="st-specification" LONG-NAME="Specification">
+          <SPEC-ATTRIBUTES>
+            <ATTRIBUTE-DEFINITION-STRING IDENTIFIER="ad-spec-name" LONG-NAME="Name">
+              <TYPE><DATATYPE-DEFINITION-STRING-REF>dt-string-001</DATATYPE-DEFINITION-STRING-REF></TYPE>
+            </ATTRIBUTE-DEFINITION-STRING>
+          </SPEC-ATTRIBUTES>
+        </SPECIFICATION-TYPE>
+      </SPEC-TYPES>
+      
+      <!-- Spec Objects (Requirements) -->
+      <SPEC-OBJECTS>
+        <SPEC-OBJECT IDENTIFIER="req-001">
+          <TYPE><SPEC-OBJECT-TYPE-REF>sot-requirement</SPEC-OBJECT-TYPE-REF></TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="System shall start within 5 seconds">
+              <DEFINITION><ATTRIBUTE-DEFINITION-STRING-REF>ad-title</ATTRIBUTE-DEFINITION-STRING-REF></DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-XHTML>
+              <DEFINITION><ATTRIBUTE-DEFINITION-XHTML-REF>ad-description</ATTRIBUTE-DEFINITION-XHTML-REF></DEFINITION>
+              <THE-VALUE><xhtml:div>The system shall initialize and be ready for user interaction within 5 seconds of power-on.</xhtml:div></THE-VALUE>
+            </ATTRIBUTE-VALUE-XHTML>
+            <ATTRIBUTE-VALUE-INTEGER THE-VALUE="10">
+              <DEFINITION><ATTRIBUTE-DEFINITION-INTEGER-REF>ad-priority</ATTRIBUTE-DEFINITION-INTEGER-REF></DEFINITION>
+            </ATTRIBUTE-VALUE-INTEGER>
+          </VALUES>
+        </SPEC-OBJECT>
+        
+        <SPEC-OBJECT IDENTIFIER="req-002">
+          <TYPE><SPEC-OBJECT-TYPE-REF>sot-requirement</SPEC-OBJECT-TYPE-REF></TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="System shall support user authentication">
+              <DEFINITION><ATTRIBUTE-DEFINITION-STRING-REF>ad-title</ATTRIBUTE-DEFINITION-STRING-REF></DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-XHTML>
+              <DEFINITION><ATTRIBUTE-DEFINITION-XHTML-REF>ad-description</ATTRIBUTE-DEFINITION-XHTML-REF></DEFINITION>
+              <THE-VALUE><xhtml:div>The system shall provide secure user authentication with username and password.</xhtml:div></THE-VALUE>
+            </ATTRIBUTE-VALUE-XHTML>
+            <ATTRIBUTE-VALUE-INTEGER THE-VALUE="9">
+              <DEFINITION><ATTRIBUTE-DEFINITION-INTEGER-REF>ad-priority</ATTRIBUTE-DEFINITION-INTEGER-REF></DEFINITION>
+            </ATTRIBUTE-VALUE-INTEGER>
+          </VALUES>
+        </SPEC-OBJECT>
+        
+        <SPEC-OBJECT IDENTIFIER="req-003">
+          <TYPE><SPEC-OBJECT-TYPE-REF>sot-requirement</SPEC-OBJECT-TYPE-REF></TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="System shall log all user actions">
+              <DEFINITION><ATTRIBUTE-DEFINITION-STRING-REF>ad-title</ATTRIBUTE-DEFINITION-STRING-REF></DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+            <ATTRIBUTE-VALUE-XHTML>
+              <DEFINITION><ATTRIBUTE-DEFINITION-XHTML-REF>ad-description</ATTRIBUTE-DEFINITION-XHTML-REF></DEFINITION>
+              <THE-VALUE><xhtml:div>All user actions shall be logged with timestamp and user ID for audit purposes.</xhtml:div></THE-VALUE>
+            </ATTRIBUTE-VALUE-XHTML>
+            <ATTRIBUTE-VALUE-INTEGER THE-VALUE="5">
+              <DEFINITION><ATTRIBUTE-DEFINITION-INTEGER-REF>ad-priority</ATTRIBUTE-DEFINITION-INTEGER-REF></DEFINITION>
+            </ATTRIBUTE-VALUE-INTEGER>
+          </VALUES>
+        </SPEC-OBJECT>
+      </SPEC-OBJECTS>
+      
+      <!-- Specifications -->
+      <SPECIFICATIONS>
+        <SPECIFICATION IDENTIFIER="spec-001">
+          <TYPE><SPECIFICATION-TYPE-REF>st-specification</SPECIFICATION-TYPE-REF></TYPE>
+          <VALUES>
+            <ATTRIBUTE-VALUE-STRING THE-VALUE="System Requirements">
+              <DEFINITION><ATTRIBUTE-DEFINITION-STRING-REF>ad-spec-name</ATTRIBUTE-DEFINITION-STRING-REF></DEFINITION>
+            </ATTRIBUTE-VALUE-STRING>
+          </VALUES>
+          <CHILDREN>
+            <SPEC-HIERARCHY IDENTIFIER="sh-001">
+              <OBJECT><SPEC-OBJECT-REF>req-001</SPEC-OBJECT-REF></OBJECT>
+            </SPEC-HIERARCHY>
+            <SPEC-HIERARCHY IDENTIFIER="sh-002">
+              <OBJECT><SPEC-OBJECT-REF>req-002</SPEC-OBJECT-REF></OBJECT>
+            </SPEC-HIERARCHY>
+            <SPEC-HIERARCHY IDENTIFIER="sh-003">
+              <OBJECT><SPEC-OBJECT-REF>req-003</SPEC-OBJECT-REF></OBJECT>
+            </SPEC-HIERARCHY>
+          </CHILDREN>
+        </SPECIFICATION>
+      </SPECIFICATIONS>
+    </REQ-IF-CONTENT>
+  </CORE-CONTENT>
+</REQ-IF>
